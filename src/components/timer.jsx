@@ -23,8 +23,14 @@ export default function Timer() {
         setTimer((prev) => {
           const stateCopy = { ...prev };
 
+          if (prev.minuteTwo === 9) {
+            stateCopy.minuteOne += 1;
+            stateCopy.minuteTwo = 0;
+            return stateCopy;
+          }
+
           if (prev.secondOne === 5 && prev.secondTwo === 9) {
-            stateCopy.minute += 1;
+            stateCopy.minuteTwo += 1;
             stateCopy.secondOne = 0;
             stateCopy.secondTwo = 0;
             return stateCopy;
@@ -49,7 +55,10 @@ export default function Timer() {
 
   useEffect(() => {
     const checkForFinishTime = () => {
-      if (timeLimit && timer.minute === timeLimit) {
+      const { minuteOne, minuteTwo } = timer;
+      let totalMin = Number(minuteOne.toString() + minuteTwo.toString());
+
+      if (timeLimit && totalMin === timeLimit) {
         //     breakTimerRef.current = setInterval(() => {});
         handleStopTimer();
       }
