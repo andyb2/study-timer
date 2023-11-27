@@ -1,7 +1,12 @@
 import { useState, useRef, useEffect } from 'react';
 
 export default function Timer() {
-  const [timer, setTimer] = useState({ minute: 0, secondOne: 0, secondTwo: 0 });
+  const [timer, setTimer] = useState({
+    minuteOne: 0,
+    minuteTwo: 0,
+    secondOne: 0,
+    secondTwo: 0,
+  });
   const [timeLimit, setTimeLimit] = useState(0);
   //   const [breakTime, setBreakTime] = useState(0);
   const timerRef = useRef(null);
@@ -65,7 +70,8 @@ export default function Timer() {
       </select>
 
       <div>
-        {timer.minute}:{timer.secondOne}
+        {timer.minuteOne}
+        {timer.minuteTwo}:{timer.secondOne}
         {timer.secondTwo}
       </div>
 
