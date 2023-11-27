@@ -49,7 +49,6 @@ export default function Timer() {
 
   useEffect(() => {
     const checkForFinishTime = () => {
-      console.log(timeLimit);
       if (timeLimit && timer.minute === timeLimit) {
         //     breakTimerRef.current = setInterval(() => {});
         handleStopTimer();
