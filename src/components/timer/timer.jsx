@@ -11,6 +11,7 @@ export default function Timer() {
     secondTwo: 0,
   });
   const [timeLimit, setTimeLimit] = useState(0);
+  const [isBreak, setIsBreak] = useState(false);
   const timerRef = useRef(null);
 
   const handleStartTimer = () => {
@@ -25,13 +26,29 @@ export default function Timer() {
     clearInterval(timerRef.current);
   };
 
+  const breakTime = () => {
+    setTimer((prev) => {
+      const stateCopy = { ...prev };
+
+      for (const time in stateCopy) {
+        stateCopy[time] = 0;
+      }
+
+      return stateCopy;
+    });
+    setIsBreak(true);
+  };
+
   useEffect(() => {
     const checkForFinishTime = () => {
       const { minuteOne, minuteTwo } = timer;
+
+      // calculate total time to compare to time limit
       let totalMin = Number(minuteOne.toString() + minuteTwo.toString());
 
       if (timeLimit && totalMin === timeLimit) {
         handleStopTimer();
+        breakTime();
       }
     };
 
