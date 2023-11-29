@@ -1,3 +1,5 @@
+import styles from './time-limit.module.css';
+
 export default function TimeLimit({ setTimeLimit }) {
   const handleSetTime = (time) => {
     const toNum = Number(time);
@@ -5,7 +7,10 @@ export default function TimeLimit({ setTimeLimit }) {
   };
 
   return (
-    <select onChange={(e) => handleSetTime(e.target.value)}>
+    <select
+      className={styles.select}
+      onChange={(e) => handleSetTime(e.target.value)}
+    >
       <option default>Select Time Limit</option>
       <option value={5}>5 min</option>
       <option value={10}>10 min</option>
