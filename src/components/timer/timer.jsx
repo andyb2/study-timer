@@ -12,6 +12,7 @@ export default function Timer() {
   });
   const [timeLimit, setTimeLimit] = useState(0);
   const [isBreak, setIsBreak] = useState(false);
+  const [breakTimeLimit, setBreakTimeLimit] = useState(10);
   const timerRef = useRef(null);
 
   const handleStartTimer = () => {
@@ -36,7 +37,8 @@ export default function Timer() {
 
       return stateCopy;
     });
-    setIsBreak(true);
+    setIsBreak((prev) => !prev);
+    handleStartTimer();
   };
 
   useEffect(() => {
@@ -50,15 +52,20 @@ export default function Timer() {
         handleStopTimer();
         breakTime();
       }
+
+      if (isBreak && totalMin === breakTimeLimit) {
+        handleStopTimer();
+        breakTime();
+      }
     };
 
     checkForFinishTime();
-  }, [timer, timeLimit]);
+  }, [timer, timeLimit, isBreak, breakTimeLimit, breakTime]);
 
   return (
     <div className={styles.container}>
       <TimeLimit setTimeLimit={setTimeLimit} />
-      <div className={styles.timer}>
+      <div className={`${styles.timer} ${isBreak && styles.break}`}>
         {timer.minuteOne}
         {timer.minuteTwo}:{timer.secondOne}
         {timer.secondTwo}
