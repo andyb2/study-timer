@@ -1,7 +1,9 @@
 import { formatTimer } from '../../utils/utilFunctions';
 import TimeLimit from '../time-limit/time-limit';
 import styles from './timer.module.css';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useMemo } from 'react';
+import audioBreak from '../../audio/SBreak.m4a';
+import audioStudy from '../../audio/SStudy.m4a';
 
 export default function Timer() {
   const [timer, setTimer] = useState({
@@ -14,6 +16,11 @@ export default function Timer() {
   const [isBreak, setIsBreak] = useState(false);
   const [breakTimeLimit, setBreakTimeLimit] = useState(0);
   const timerRef = useRef(null);
+
+  const [audio1, audio2] = useMemo(
+    () => [new Audio(audioBreak), new Audio(audioStudy)],
+    []
+  );
 
   const handleStartTimer = () => {
     if (timeLimit && breakTimeLimit) {
@@ -58,11 +65,13 @@ export default function Timer() {
       if (!isBreak && timeLimit && totalMin === timeLimit) {
         handleStopTimer();
         breakTime(true);
+        audio1.play();
       }
 
       if (isBreak && totalMin === breakTimeLimit) {
         handleStopTimer();
         breakTime(false);
+        audio2.play();
       }
     };
 
