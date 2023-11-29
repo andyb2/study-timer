@@ -1,3 +1,4 @@
+import TimeLimit from '../time-limit/time-limit';
 import styles from './timer.module.css';
 import { useState, useRef, useEffect } from 'react';
 
@@ -12,11 +13,6 @@ export default function Timer() {
   //   const [breakTime, setBreakTime] = useState(0);
   const timerRef = useRef(null);
   //   const breakTimerRef = useRef(null);
-
-  const handleSetTime = (time) => {
-    const toNum = Number(time);
-    setTimeLimit(toNum);
-  };
 
   const handleStartTimer = () => {
     if (timeLimit) {
@@ -70,14 +66,7 @@ export default function Timer() {
 
   return (
     <div className={styles.container}>
-      <select onChange={(e) => handleSetTime(e.target.value)}>
-        <option default>Select Time Limit</option>
-        <option value={5}>5 min</option>
-        <option value={10}>10 min</option>
-        <option value={15}>15 min</option>
-        <option value={20}>20 min</option>
-      </select>
-
+      <TimeLimit setTimeLimit={setTimeLimit} />
       <div className={styles.timer}>
         {timer.minuteOne}
         {timer.minuteTwo}:{timer.secondOne}
