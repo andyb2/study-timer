@@ -19,7 +19,7 @@ export default function Timer() {
     if (timeLimit && breakTimeLimit) {
       timerRef.current = setInterval(() => {
         setTimer((prev) => formatTimer(prev));
-      });
+      }, 1000);
     }
   };
 
@@ -27,7 +27,8 @@ export default function Timer() {
     clearInterval(timerRef.current);
   };
 
-  const breakTime = () => {
+  const handleClearTimer = () => {
+    handleStopTimer();
     setTimer((prev) => {
       const stateCopy = { ...prev };
 
@@ -37,7 +38,13 @@ export default function Timer() {
 
       return stateCopy;
     });
-    setIsBreak((prev) => !prev);
+
+    setIsBreak(false);
+  };
+
+  const breakTime = (bool) => {
+    handleClearTimer();
+    bool && setIsBreak(bool);
     handleStartTimer();
   };
 
@@ -50,12 +57,12 @@ export default function Timer() {
 
       if (!isBreak && timeLimit && totalMin === timeLimit) {
         handleStopTimer();
-        breakTime();
+        breakTime(true);
       }
 
       if (isBreak && totalMin === breakTimeLimit) {
         handleStopTimer();
-        breakTime();
+        breakTime(false);
       }
     };
 
@@ -64,13 +71,6 @@ export default function Timer() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.inputs}>
-        <p className={styles.label}>Study time</p>
-        <TimeLimit setTimeLimit={setTimeLimit} />
-        <p className={styles.label}>Break time</p>
-        <TimeLimit setBreakTimeLimit={setBreakTimeLimit} />
-      </div>
-
       <p className={styles.type}>{!isBreak ? 'Studying!' : 'Break!'}</p>
 
       <div className={`${styles.timer} ${isBreak && styles.break}`}>
@@ -86,6 +86,16 @@ export default function Timer() {
         <button onClick={() => handleStopTimer()} className={styles.button}>
           Stop
         </button>
+        <button onClick={() => handleClearTimer()} className={styles.button}>
+          Clear
+        </button>
+      </div>
+
+      <div className={styles.inputs}>
+        <p className={styles.label}>Study time</p>
+        <TimeLimit setTimeLimit={setTimeLimit} />
+        <p className={styles.label}>Break time</p>
+        <TimeLimit setBreakTimeLimit={setBreakTimeLimit} />
       </div>
     </div>
   );
