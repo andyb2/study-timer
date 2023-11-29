@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6rem;
+}
+
+.timer {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 80px;
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 1rem;
+}
+
+.button {
+  background: none;
+  border: 1px solid black;
+  padding: 1rem 2rem;
+  border-radius: 5px;
+}
