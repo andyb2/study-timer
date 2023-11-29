@@ -12,11 +12,11 @@ export default function Timer() {
   });
   const [timeLimit, setTimeLimit] = useState(0);
   const [isBreak, setIsBreak] = useState(false);
-  const [breakTimeLimit, setBreakTimeLimit] = useState(10);
+  const [breakTimeLimit, setBreakTimeLimit] = useState(0);
   const timerRef = useRef(null);
 
   const handleStartTimer = () => {
-    if (timeLimit) {
+    if (timeLimit && breakTimeLimit) {
       timerRef.current = setInterval(() => {
         setTimer((prev) => formatTimer(prev));
       });
@@ -48,7 +48,7 @@ export default function Timer() {
       // calculate total time to compare to time limit
       let totalMin = Number(minuteOne.toString() + minuteTwo.toString());
 
-      if (timeLimit && totalMin === timeLimit) {
+      if (!isBreak && timeLimit && totalMin === timeLimit) {
         handleStopTimer();
         breakTime();
       }
@@ -60,11 +60,19 @@ export default function Timer() {
     };
 
     checkForFinishTime();
-  }, [timer, timeLimit, isBreak, breakTimeLimit, breakTime]);
+  }, [timer, timeLimit, isBreak, breakTimeLimit]);
 
   return (
     <div className={styles.container}>
-      <TimeLimit setTimeLimit={setTimeLimit} />
+      <div className={styles.inputs}>
+        <p className={styles.label}>Study time</p>
+        <TimeLimit setTimeLimit={setTimeLimit} />
+        <p className={styles.label}>Break time</p>
+        <TimeLimit setBreakTimeLimit={setBreakTimeLimit} />
+      </div>
+
+      <p className={styles.type}>{!isBreak ? 'Studying!' : 'Break!'}</p>
+
       <div className={`${styles.timer} ${isBreak && styles.break}`}>
         {timer.minuteOne}
         {timer.minuteTwo}:{timer.secondOne}

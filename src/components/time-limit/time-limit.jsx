@@ -1,9 +1,9 @@
 import styles from './time-limit.module.css';
 
-export default function TimeLimit({ setTimeLimit }) {
+export default function TimeLimit({ setTimeLimit, setBreakTimeLimit }) {
   const handleSetTime = (time) => {
     const toNum = Number(time);
-    setTimeLimit(toNum);
+    setTimeLimit ? setTimeLimit(toNum) : setBreakTimeLimit(toNum);
   };
 
   return (
