@@ -101,10 +101,8 @@ export default function Timer() {
       </div>
 
       <div className={styles.inputs}>
-        <p className={styles.label}>Study time</p>
-        <TimeLimit setTimeLimit={setTimeLimit} />
-        <p className={styles.label}>Break time</p>
-        <TimeLimit setBreakTimeLimit={setBreakTimeLimit} />
+        <TimeLimit setTimeLimit={setTimeLimit} label={'Study time'} />
+        <TimeLimit setBreakTimeLimit={setBreakTimeLimit} label={'Break time'} />
       </div>
     </div>
   );
