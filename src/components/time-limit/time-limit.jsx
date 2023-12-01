@@ -8,7 +8,7 @@ export default function TimeLimit({ setTimeLimit, setBreakTimeLimit, label }) {
 
   return (
     <div className={styles.container}>
-      <p className={styles.label}>{label}</p>
+      <p className={styles.label}>{label.toUpperCase()}</p>
       <select
         className={styles.select}
         onChange={(e) => handleSetTime(e.target.value)}

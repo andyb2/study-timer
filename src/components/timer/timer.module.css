@@ -2,43 +2,44 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 6rem;
+  width: 400px;
 }
 
 .timer {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 80px;
+  font-size: 165px;
+  line-height: 0.75;
 }
 
 .buttonContainer {
   display: flex;
+  justify-content: space-between;
+  width: 100%;
   gap: 1rem;
 }
 
 .button {
   background: none;
-  border: 1px solid black;
-  padding: 1rem 2rem;
-  border-radius: 5px;
+  border: none;
+  padding: 1rem 0;
+  font-size: 35px;
+  font-weight: bolder;
+  line-height: 0;
 }
 
 .break {
-  color: green;
+  color: rgba(0, 128, 0, 0.394);
 }
 
 .inputs {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  gap: 1rem;
-  padding: 1rem;
-  border: 1px solid black;
-  border-radius: 5px;
-  margin-top: 1rem;
+  width: 100%;
 }
 
 .type {
-  font-size: 30px;
+  font-size: 125px;
   margin: 0;
-  padding: 1rem;
+  line-height: 0.75;
 }

@@ -80,7 +80,7 @@ export default function Timer() {
 
   return (
     <div className={styles.container}>
-      <p className={styles.type}>{!isBreak ? 'Studying!' : 'Break!'}</p>
+      <p className={styles.type}>{!isBreak ? 'STUDY!' : 'BREAK!'}</p>
 
       <div className={`${styles.timer} ${isBreak && styles.break}`}>
         {timer.minuteOne}
@@ -90,13 +90,13 @@ export default function Timer() {
 
       <div className={styles.buttonContainer}>
         <button onClick={() => handleStartTimer()} className={styles.button}>
-          Start
+          START
         </button>
         <button onClick={() => handleStopTimer()} className={styles.button}>
-          Stop
+          STOP
         </button>
         <button onClick={() => handleClearTimer()} className={styles.button}>
-          Clear
+          CLEAR
         </button>
       </div>
 
