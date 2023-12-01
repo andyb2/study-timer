@@ -5,8 +5,9 @@
 }
 
 .select {
-  font-size: 16px;
-  padding: 0.2rem;
+  display: flex;
+  font-size: 30px;
+  width: 100px;
   border: none;
 }
 
