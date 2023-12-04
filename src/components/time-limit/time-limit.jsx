@@ -18,6 +18,8 @@ export default function TimeLimit({ setTimeLimit, setBreakTimeLimit, label }) {
         <option value={10}>10 min</option>
         <option value={15}>15 min</option>
         <option value={20}>20 min</option>
+        <option value={25}>15 min</option>
+        <option value={30}>20 min</option>
       </select>
     </div>
   );
